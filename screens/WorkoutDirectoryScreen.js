@@ -1,16 +1,23 @@
 import React from 'react';
-import {ScrollView, View, StyleSheet } from 'react-native';
-import { Tile } from 'react-native-elements';
+import {ScrollView, StyleSheet } from 'react-native';
+//import { Tile } from 'react-native-elements';
 import Header from '../componets/Header';
+import RenderWorkouts from '../features/workouts/RenderWorkouts';
 
 
-function WorkoutDirectoryScreen ()  {
+
+function WorkoutDirectoryScreen ({navigation})  {
 
     return (
         <ScrollView style={styles.view}>
             <Header />
-            <View>
-                <Tile style={styles.tile} title='UPPER BODY WORKOUTS' titleStyle={{color: '#AD4BDA' }} featured ></Tile>
+            {/* <View>
+                <Tile style={styles.tile} title='UPPER BODY WORKOUTS' titleStyle={{color: '#AD4BDA' }} featured
+                onPress={() =>
+                    navigation.navigate('WorkoutInfo', {
+                      workout: 'Upper Body', mondayUpperBody, thursdayUpperBody
+                    })
+                }></Tile>
             </View>
             <View style={{margin: 5}}></View>
             <View>
@@ -19,7 +26,8 @@ function WorkoutDirectoryScreen ()  {
             <View style={{margin: 5}}></View>
             <View>
                 <Tile style={styles.tile} title='FULL BODY WORKOUTS' titleStyle={{color: '#AD4BDA' }} featured></Tile>
-            </View>
+            </View> */}
+            <RenderWorkouts />
         </ScrollView>
     )
 }

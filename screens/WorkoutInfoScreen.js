@@ -1,12 +1,13 @@
-import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
-import RenderUpperBody from '../features/workouts/RenderUpperBody';
+// import React from 'react';
+// //import {ScrollView, Text, View} from 'react-native';
+// import RenderWorkouts from '../features/workouts/RenderWorkouts';
 
-const WorkoutInfoScreen = () => {
+// const WorkoutInfoScreen = ({route}) => {
+//   const {workout} = route.params;
 
-  return (
-    <RenderUpperBody />
-  )
-}
+//   return (
+//     <RenderWorkouts workout={workout} />
+//   )
+// }
 
-export default WorkoutInfoScreen
+// export default WorkoutInfoScreen

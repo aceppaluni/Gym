@@ -17,12 +17,14 @@ const styles = StyleSheet.create({
         //height: '200%'
         margin: '10%',
         display: 'flex',
-        flexDirection:'row'
+        flexDirection:'row',
+        flexDirection: 'row'
         //justifyContent: 'flex-end'
     },
     image: {
-        width: '20%',
-        height: '50%',
+        width: '15%',
+        height: '150%',
+        borderRadius: '50%'
     },
     text:{
         color: '#AD4BDA',

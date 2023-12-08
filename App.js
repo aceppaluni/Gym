@@ -22,14 +22,18 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <Provider store={store}>
-    {/* <NavigationContainer>
+    <NavigationContainer>
       <Tab.Navigator screenOptions={screenOptions}>
         <Tab.Screen name="Home" component={HomeScreen} options={{tabBarIcon: ({ color, size }) => <Icon name="home" color={color} size={size} />}}/>
         <Tab.Screen name="Directory" component={WorkoutDirectoryScreen} options={{tabBarIcon: ({ color, size }) => <Icon name="list" color={color} size={size} />}}></Tab.Screen>
+        
+        {/* <Tab.Screen name='WorkoutInfo' component={WorkoutInfoScreen} options={({route}) => ({
+          title: route.params.workout.name })}>
+        </Tab.Screen> */}
+
         <Tab.Screen name="About" component={AboutScreen} options={{tabBarIcon: ({ color, size }) => <Icon name="info" color={color} size={size} />}}/>
       </Tab.Navigator>
-    </NavigationContainer> */}
-    <RenderWorkouts />
+    </NavigationContainer>
     </Provider>
   );
 };

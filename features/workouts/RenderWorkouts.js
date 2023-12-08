@@ -11,7 +11,7 @@ const RenderWorkouts = () => {
   const renderDayWorkouts = (dayWorkouts) => {
     return (
       <View>
-        {Array.isArray(dayWorkouts) && dayWorkouts.slice(0).map((exercise, index) => (
+        {Array.isArray(dayWorkouts) && dayWorkouts.map((exercise, index) => (
         <View key={index}>
         <Card>
           <Text style={styles.mainCard}>{exercise.mainTitle}</Text>
@@ -26,26 +26,12 @@ const RenderWorkouts = () => {
 
   return (
     <ScrollView>
-      <Header />
       {renderDayWorkouts(mondayUpperBody)}
       {renderDayWorkouts(tuesdayLowerBody)}
       {renderDayWorkouts(wednesdayFullBody)}
       {renderDayWorkouts(thursdayUpperBody)}
       {renderDayWorkouts(fridayLowerBody)}
     </ScrollView>
-    // <ScrollView>
-    //   <Header />
-    //   <Text style={styles.text}>Upper Body</Text>
-    //   <View>
-    //   <Text>{WORKOUTS.mainTitle}</Text>
-    //   {/* {Array.isArray(mondayUpperBody) && mondayUpperBody.slice(1).map((exercise, index) => (
-    //     <Card key={index}>
-    //       <Card.Title>{exercise.name}</Card.Title>
-    //       <Text>{exercise.set}</Text>
-    //     </Card>
-    //   ))} */}
-    //   </View>
-    // </ScrollView>
   )
 }
 
