@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
-import {ScrollView, Text, View, StyleSheet, TextInput, Button } from 'react-native';
+import {ScrollView, Text, View, StyleSheet, TextInput, Button, Image } from 'react-native';
 import Header from '../componets/Header';
+import Photo from '../assets/self.jpg'
 
 function AboutScreen ()  {
     const [nameText, setNameText] = useState('');
@@ -22,7 +23,8 @@ function AboutScreen ()  {
   return (
     <ScrollView style={styles.view}>
         <Header />
-        <View>
+        <View style={styles.viewOne}>
+            <Image source={Photo} style={styles.photo} />
             <Text style={styles.text}>My name is Angelina. I have been attending the gym for a few years 
                 now and I am at a point where I think I can help those just 
                 starting out.
@@ -32,12 +34,12 @@ function AboutScreen ()  {
             </Text>
             <Text style={styles.text}>Happy Gaining!! </Text>
         </View>
-        <View style={{ borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth,}}/>
-        <View>
-            <Text style={styles.text} >Name:</Text>
-            <TextInput placeholder='Name' value={nameText} onChangeText={handelNameText}></TextInput>
-            <Text style={styles.text}>FeedBack:</Text>
-            <TextInput placeholder='Feedback' value={feedBackText} onChangeText={handelFeedBackText}></TextInput>
+        <View style={{ borderBottomColor: 'white', borderBottomWidth: StyleSheet.hairlineWidth,}}/>
+        <View style={styles.viewTwo}>
+            <Text style={{fontSize: 18, paddingTop: 10, paddingBottom: 2, color: '#AD4BDA'}} >Name:</Text>
+            <TextInput placeholder='Name' value={nameText} onChangeText={handelNameText} editable multiline numberOfLines={50} maxLength={30} style={styles.textInput}></TextInput>
+            <Text style={{fontSize: 18, paddingTop: 10, paddingBottom: 2, color: '#AD4BDA'}} >FeedBack:</Text>
+            <TextInput value={feedBackText} onChangeText={handelFeedBackText} editable multiline numberOfLines={50} maxLength={30} style={styles.textInput}></TextInput>
             <Button onPress={() => handelSubmit} title='Submit'>Submit</Button>
         </View>
     </ScrollView>
@@ -47,12 +49,32 @@ function AboutScreen ()  {
 const styles = StyleSheet.create({
     view: {
         backgroundColor: "black",
-        textC: '#AD4BDA'
+        color: '#AD4BDA'
+    },
+    viewOne: {
+        margin: 10,
+        //paddingTop: 5
+    },
+    viewTwo: {
+        //alignItems: 'center'
     },
     text: {
-        fontSize: 15,
+        fontSize: 18,
         color: '#AD4BDA',
-        textAlign: 'center'
+        textAlign: 'center',
+        paddingTop: 10
+    },
+    textInput: {
+        color: 'white',
+        backgroundColor: '#312C2C',
+        paddingBottom: 80
+    },
+    photo: {
+        maxWidth: 150,
+        height: 150,
+        borderRadius: 40,
+        marginRight: 'auto',
+        marginLeft: 'auto'
     }
 })
 

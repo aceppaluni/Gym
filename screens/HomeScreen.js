@@ -13,8 +13,8 @@ function HomeScreen () {
             <Text style={styles.text}>We are happy your here</Text>
             <Text style={styles.text}>I threw this together as a project for myself 
               and as a guide for those looking to start their gym journey. 
-              Here you can find programs, supplements and more!
             </Text>
+            <Text style={styles.text}>Here you can find programs, supplements and more!</Text>
             <Text style={styles.text}>Lets make those gains!!</Text>
         </View>
         <View style={styles.imageView}>
@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
   text: {
     color: '#AD4BDA',
     textAlign: 'center',
-    fontSize: 15,
+    fontSize: 18,
+    padding: 6,
   },
   imageView: {
     display: 'flex',
