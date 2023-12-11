@@ -9,8 +9,8 @@ function HomeScreen () {
     <ScrollView style={styles.view}>
       <Header />
         <View style={styles.view}>
-            <Text style={styles.text}>Welcome</Text>
-            <Text style={styles.text}>We are happy your here</Text>
+            <Text style={styles.textOne}>Welcome</Text>
+            <Text style={styles.textOne}>We are happy your here</Text>
             <Text style={styles.text}>I threw this together as a project for myself 
               and as a guide for those looking to start their gym journey. 
             </Text>
@@ -32,6 +32,13 @@ const styles = StyleSheet.create({
     textC: '#AD4BDA'
   },
   text: {
+    color: '#AD4BDA',
+    textAlign: 'center',
+    fontSize: 18,
+    padding: 6,
+  },
+  textOne: {
+    fontWeight: 'bold',
     color: '#AD4BDA',
     textAlign: 'center',
     fontSize: 18,
