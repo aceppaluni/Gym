@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
-import {ScrollView, Text, View, StyleSheet, TextInput, Button, Image } from 'react-native';
+import {ScrollView, Text, View, StyleSheet, TextInput, Pressable, Image } from 'react-native';
 import Header from '../componets/Header';
-import Photo from '../assets/self.jpg'
+import Photo from '../assets/self.jpg';
+import * as MailComposer from 'expo-mail-composer';
 
 function AboutScreen ()  {
     const [nameText, setNameText] = useState('');
@@ -19,6 +20,14 @@ function AboutScreen ()  {
         console.log('Feedback was submitted')
         nameText = '';
         feedBackText = '';
+    }
+
+    const sendMail = () => {
+        MailComposer.composeAsync({
+            recipients: ['aceppaluni@aol.com'],
+            subject: '',
+            body: 'Hi Angelina, '
+        })
     }
   return (
     <ScrollView style={styles.view}>
@@ -40,7 +49,15 @@ function AboutScreen ()  {
             <TextInput placeholder='Name' value={nameText} onChangeText={handelNameText} editable multiline numberOfLines={50} maxLength={30} style={styles.textInput}></TextInput>
             <Text style={{fontSize: 18, paddingTop: 10, paddingBottom: 2, color: '#AD4BDA'}} >FeedBack:</Text>
             <TextInput value={feedBackText} onChangeText={handelFeedBackText} editable multiline numberOfLines={50} maxLength={30} style={styles.textInput}></TextInput>
-            <Button onPress={() => handelSubmit} title='Submit'>Submit</Button>
+            <Pressable onPress={() => handelSubmit} style={styles.button} >
+                <Text style={styles.buttonTxt}>Submit</Text>
+            </Pressable>
+        </View>
+        <View>
+            <Text style={{fontSize: 18, paddingTop: 10, paddingBottom: 2, color: '#AD4BDA'}}>Email me with questions!</Text>
+            <Pressable onPress={() => sendMail()} style={styles.button}>
+                <Text style={styles.buttonTxt}>Email</Text>
+            </Pressable>
         </View>
     </ScrollView>
   )
@@ -75,6 +92,25 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         marginRight: 'auto',
         marginLeft: 'auto'
+    },
+    emailText: {
+        colo: '#AD4BDA'
+    },
+    button: {
+        backgroundColor: 'gray',
+        color: 'white',
+        borderRadius: 4,
+        justifyContent: 'center',
+        backgroundColor: '#AD4BDA',
+        paddingVertical: 12,
+        paddingHorizontal: 12,
+        margin: 10
+    },
+    buttonTxt: {
+        color: 'white',
+        fontSize: 15,
+        textAlign: 'center',
+        
     }
 })
 
