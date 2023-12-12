@@ -5,7 +5,6 @@ import Header from '../componets/Header';
 import RenderWorkouts from '../features/workouts/RenderWorkouts';
 
 
-
 function WorkoutDirectoryScreen ({navigation})  {
 
     return (
