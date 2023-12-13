@@ -42,13 +42,14 @@ export const WORKOUTS = [
             id: 0,
             name: 'Partial Range Deadlift',
             set: '3-4 sets x 8-10 reps',
-            category: 'Upper Body'
+            category: 'Lower Body'
+            
         },
         {
             id: 1,
             name: 'Romanian Deadlift',
             set: '3-4 sets x 8-10 reps',
-            category: 'Upper Body'
+            category: 'Lower Body'
         }
     ],
     wednesdayFullBody = [
@@ -58,22 +59,26 @@ export const WORKOUTS = [
         {
             id: 0,
             name: 'KB Swings',
-            set: '3-4 sets x 10-12 reps'
+            set: '3-4 sets x 10-12 reps',
+            category: 'Full Body'
         },
         {
             id: 1, 
             name: 'KB reverse lunge',
-            set: '3-4 sets x 8-10 reps'
+            set: '3-4 sets x 8-10 reps',
+            category: 'Full Body'
         }
     ],
     thursdayUpperBody = [
         {
-            mainTitle: 'Thursday Mass Volume Workout'
+            mainTitle: 'Thursday Mass Volume Workout',
+            category: 'Upper Body'
         },
         {
             id: 0,
             name: 'Partial Range Barbell Bench Press',
             set: '3-4 sets x 8-10 reps',
+            category: 'Upper Body'
         }
     ],
     fridayLowerBody = [
@@ -83,7 +88,8 @@ export const WORKOUTS = [
         {
             id: 0,
             name: 'Bulgarian Split Squat',
-            set: '3-4 sets x 8-10 reps'
+            set: '3-4 sets x 8-10 reps',
+            category: 'Lower Body'
         }
     ]
 ]

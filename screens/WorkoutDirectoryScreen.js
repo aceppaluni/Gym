@@ -1,35 +1,146 @@
-import React from 'react';
-import {ScrollView, StyleSheet } from 'react-native';
+import React, {useState} from 'react';
+import { WORKOUTS } from '../shared/workouts';
+import {FlatList, ScrollView, StyleSheet, TextInput, View, Text} from 'react-native';
 //import { Tile } from 'react-native-elements';
 import Header from '../componets/Header';
 import RenderWorkouts from '../features/workouts/RenderWorkouts';
+import RNPickerSelect from 'react-native-picker-select';
 
 
-function WorkoutDirectoryScreen ({navigation})  {
+// function WorkoutDirectoryScreen ()  {
+//     const [data, setData] = useState(WORKOUTS)
+//     const [filter, setFilter] = useState('');
+  
+//     const handleFilter = (text) => {
+//       setFilter(text)
+  
+//       const filterData = WORKOUTS.map((dayWorkout) => {
+//         return {
+//           ...dayWorkout,
+//           workouts: dayWorkout.workouts.filter((workout) => workout.category.toLowerCase().includes(text.toLowerCase())
+//           ),
+//         }
+//       })
+  
+//       setData(filterData)
+//     }
 
+//     return (
+//         <ScrollView style={styles.view}>
+//             <Header />
+//             <TextInput
+//                 style={{ height: 40, borderColor: 'gray', borderWidth: 1, margin: 10, padding: 10 }}
+//                 placeholder="Filter by category..."
+//                 onChangeText={handleFilter}
+//                 value={filter}
+//             />
+//             <FlatList data={data} keyExtractor={(item) => item.mainTitle} renderItem={({item}) => (
+//                 <View>
+//                     <Text>{item.mainTitle}</Text>
+//                     <FlatList data={item.workouts} keyExtractor={(workout) => workout.id.toString()} renderItem={({item: workout}) => (
+//                         <View key={workout.id}>
+//                             <Text>{workout.name}</Text>
+//                             <Text>{workout.set}</Text>
+//                             <Text>{workout.category}</Text>
+//                         </View>
+//                     )} />
+//                 </View>
+//             )} />
+//             <RenderWorkouts />
+//         </ScrollView>
+//     )
+// }
+
+const WorkoutDirectoryScreen = () => {
+    const [data, setData] = useState(WORKOUTS);
+    const [filter, setFilter] = useState('');
+
+    const filterWorkoutsByCategory = (workouts, selectedCategory) => {
+        // If selectedCategory is empty, return all workouts
+        if (!selectedCategory) {
+          return workouts;
+        }
+      
+        // Filter workouts based on the selected category
+        return workouts.filter((workout) =>
+          workout.category.toLowerCase().includes(selectedCategory.toLowerCase())
+        );
+      };
+  
+    const handleFilter = (text) => {
+      setFilter(text);
+  
+      const filterData = WORKOUTS.map((dayWorkout) => {
+        const workouts = dayWorkout.workouts || [];
+
+        return {
+            ...dayWorkout,
+            workouts: filterWorkoutsByCategory(workouts, text)
+          };
+      });
+  
+      setData(filterData);
+    };
+  
+    const categories = [
+      { label: 'All Categories', value: 'All Categories' },
+      { label: 'Upper Body', value: 'Upper Body' },
+      { label: 'Lower Body', value: 'Lower Body' },
+      { label: 'Full Body', value: 'Full Body' },
+    ];
+  
     return (
-        <ScrollView style={styles.view}>
-            <Header />
-            {/* <View>
-                <Tile style={styles.tile} title='UPPER BODY WORKOUTS' titleStyle={{color: '#AD4BDA' }} featured
-                onPress={() =>
-                    navigation.navigate('WorkoutInfo', {
-                      workout: 'Upper Body', mondayUpperBody, thursdayUpperBody
-                    })
-                }></Tile>
-            </View>
-            <View style={{margin: 5}}></View>
+      <ScrollView style={styles.view}>
+        <Header />
+        <RNPickerSelect
+        value={filter}
+          onValueChange={(value) => handleFilter(value)}
+          items={categories}
+          placeholder={{
+            label: 'Filter By Category...',
+            value: '',
+          }}
+          style={{
+            inputAndroid: {
+              height: 40,
+              borderColor: 'gray',
+              borderWidth: 1,
+              margin: 10,
+              padding: 10,
+            },
+            inputIOS: {
+              height: 40,
+              borderColor: 'gray',
+              borderWidth: 1,
+              margin: 10,
+              padding: 10,
+            },
+          }}
+        />
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item.mainTitle}
+          renderItem={({ item }) => (
             <View>
-                <Tile style={styles.tile} title='LOWER BODY WORKOUTS' titleStyle={{color: '#AD4BDA' }} featured></Tile>
+              <Text>{item.mainTitle}</Text>
+              <FlatList
+                data={item.workouts}
+                keyExtractor={(workout) => workout.id.toString()}
+                renderItem={({ item: workout }) => (
+                  <View key={workout.id}>
+                    <Text>{workout.name}</Text>
+                    <Text>{workout.set}</Text>
+                    <Text>{workout.category}</Text>
+                  </View>
+                )}
+              />
             </View>
-            <View style={{margin: 5}}></View>
-            <View>
-                <Tile style={styles.tile} title='FULL BODY WORKOUTS' titleStyle={{color: '#AD4BDA' }} featured></Tile>
-            </View> */}
-            <RenderWorkouts />
-        </ScrollView>
-    )
-}
+          )}
+        />
+      </ScrollView>
+    );
+  };
+  
 
 const styles = StyleSheet.create({
     view: {
