@@ -1,6 +1,6 @@
 import { Card, SocialIcon, Tile } from 'react-native-elements';
 import {ScrollView, Text, View, StyleSheet} from 'react-native';
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../../componets/Header';
 import { WORKOUTS } from '../../shared/workouts';
 
@@ -27,7 +27,7 @@ const RenderWorkouts = () => {
   return (
     <ScrollView>
       {renderDayWorkouts(mondayUpperBody)}
-      {renderDayWorkouts(tuesdayLowerBody)}
+      {renderDayWorkouts(tuesdayLowerBody)} 
       {renderDayWorkouts(wednesdayFullBody)}
       {renderDayWorkouts(thursdayUpperBody)}
       {renderDayWorkouts(fridayLowerBody)}
