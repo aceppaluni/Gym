@@ -7,10 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import RenderWorkouts from './features/workouts/RenderWorkouts';
 import SupplementsScreen from './screens/SupplementsScreen';
-//import WorkoutInfoScreen from './screens/WorkoutInfoScreen';
-
 
 const screenOptions =  {
   headerTintColor: '#fff',
@@ -27,10 +24,6 @@ export default function App() {
       <Tab.Navigator screenOptions={screenOptions}>
         <Tab.Screen name="Home" component={HomeScreen} options={{tabBarIcon: ({ color, size }) => <Icon name="home" color={color} size={size} />}}/>
         <Tab.Screen name="Directory" component={WorkoutDirectoryScreen} options={{tabBarIcon: ({ color, size }) => <Icon name="list" color={color} size={size} />}}></Tab.Screen>
-        
-        {/* <Tab.Screen name='WorkoutInfo' component={WorkoutInfoScreen} options={({route}) => ({
-          title: route.params.workout.name })}>
-        </Tab.Screen> */}
         <Tab.Screen name="Supplements" component={SupplementsScreen} options={{tabBarIcon: ({ color, size }) => <Icon name="circle" color={color} size={size} />}}></Tab.Screen>
         <Tab.Screen name="About" component={AboutScreen} options={{tabBarIcon: ({ color, size }) => <Icon name="info" color={color} size={size} />}}/>
       </Tab.Navigator>
