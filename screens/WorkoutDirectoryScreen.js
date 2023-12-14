@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { WORKOUTS } from '../shared/workouts';
-import {FlatList, ScrollView, StyleSheet, TextInput, View, Text} from 'react-native';
+import {FlatList, ScrollView, StyleSheet, View} from 'react-native';
 import Header from '../componets/Header';
 import RenderWorkouts from '../features/workouts/RenderWorkouts';
 import RNPickerSelect from 'react-native-picker-select';
@@ -10,31 +10,63 @@ const WorkoutDirectoryScreen = () => {
     const [filter, setFilter] = useState('');
 
     const filterWorkoutsByCategory = (workouts, selectedCategory) => {
-        // If selectedCategory is empty, return all workouts
-        if (!selectedCategory) {
-          return workouts;
+        switch (selectedCategory) {
+            case 'Upper Body' : return workouts.filter((workout) =>  workout.category.toLowerCase().includes('Upper Body')
+            );
+            case 'Lower Body': return workouts.filter((workout) => workout.category.includes('Lower Body')
+            );
+            case 'Full Body': return workouts.filter((workout) => workout.category.includes('Full Body')
+            );
+            default:
         }
-      
-        // Filter workouts based on the selected category
-        return workouts.filter((workout) =>
-          workout.category.toLowerCase().includes(selectedCategory.toLowerCase())
-        );
-    };
-  
-    const handleFilter = (text) => {
-      setFilter(text);
-  
-      const filterData = WORKOUTS.map((dayWorkout) => {
-        const workouts = dayWorkout.workouts || [];
+        return workouts
+    }
 
-        return {
-            ...dayWorkout,
-            workouts: filterWorkoutsByCategory(workouts, text)
-          };
-      });
+    // const filterWorkoutsByCategory = (workouts, selectedCategory) => {
+    //     // If selectedCategory is empty, return all workouts
+    //     if (!selectedCategory) {
+    //       return workouts;
+    //     }
+      
+    //     // Filter workouts based on the selected category
+    //     return workouts.filter((workout) =>
+    //       workout.category.includes(selectedCategory)
+    //     );
+    // };
+
+    const handleFilter = (text) => {
+        setFilter(text)
+        setData(filterWorkoutsByCategory(WORKOUTS, text))
+
+        // const filterData = WORKOUTS.map((dayWorkout) => {
+        //    const workouts = dayWorkout.workouts || [];
+        //     const filteredWorkouts = filterWorkoutsByCategory(workouts, text);
+
+        //     return {
+        //         ...dayWorkout,
+        //         workouts: filteredWorkouts
+        //     };
+        // });
+        // console.log('Selected:',filterData)
+        // setData(filterData)
+
+    }
   
-      setData(filterData);
-    };
+    // const handleFilter = (text) => {
+    //     console.log('Selected Category: ', text)
+    //   setFilter(text);
+  
+    //   const filterData = WORKOUTS.map((dayWorkout) => {
+    //     const workouts = dayWorkout.workouts || [];
+
+    //     return {
+    //         ...dayWorkout,
+    //         workouts: filterWorkoutsByCategory(workouts, text)
+    //     };
+    //   });
+    //   console.log("Filtered data", filterData)
+    //   setData(filterData);
+    // };
   
     const categories = [
       { label: 'All Categories', value: 'All Categories' },
@@ -44,7 +76,7 @@ const WorkoutDirectoryScreen = () => {
     ];
   
     return (
-      <ScrollView style={styles.view}>
+      <View style={styles.view}>
         <Header />
         <RNPickerSelect
         value={filter}
@@ -71,29 +103,12 @@ const WorkoutDirectoryScreen = () => {
             },
           }}
         />
-        <FlatList
-          data={data}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <View>
-              <Text>{item.mainTitle}</Text>
-              <FlatList
-              {...console.log(data)}
-                data={item.workouts}
-                keyExtractor={(workout) => workout.id.toStrin()}
-                // renderItem={({item: workout}) => (<RenderWorkouts workout={workout} />)}
-                renderItem={({ item: workout}) => (
-                  <View key={workout.id}>
-                    <Text>{workout.name}</Text>
-                    <Text>{workout.set}</Text>
-                    <Text>{workout.category}</Text>
-                  </View>
-                )}
-                />
-            </View>
-          )}
+        <FlatList 
+            data={data} 
+            renderItem={({item: workout}) => (<RenderWorkouts item={workout} key={workout.id} />)} 
+            keyExtractor={workout => workout.id}
         />
-      </ScrollView>
+      </View>
     );
 };
   

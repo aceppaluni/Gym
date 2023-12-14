@@ -17,6 +17,7 @@ const RenderWorkouts = () => {
           <Text style={styles.mainCard}>{exercise.mainTitle}</Text>
           <Card.Title>{exercise.name}</Card.Title>
           <Text>{exercise.set}</Text>
+          <Text>{exercise.category}</Text>
         </Card>
         </View>
         ))}

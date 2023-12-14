@@ -1,7 +1,8 @@
 export const WORKOUTS = [
     mondayUpperBody = [
         {
-            mainTitle: 'Monday Eccentric Workout'  // {UPPERBODYWORKOUTS.mondayUpperBody.mainTitle} 
+            mainTitle: 'Monday Eccentric Workout',  // {UPPERBODYWORKOUTS.mondayUpperBody.mainTitle} 
+            category: 'Upper Body'
         },
         {   id: 0,
             name: 'Barbell Bench Press Variation', // {UPPERBODYWORKOUTS.mondayUpperBody.name} 
