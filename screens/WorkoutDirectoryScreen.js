@@ -10,64 +10,29 @@ const WorkoutDirectoryScreen = () => {
     const [filter, setFilter] = useState('');
 
     const filterWorkoutsByCategory = (workouts, selectedCategory) => {
-        switch (selectedCategory) {
-            case 'Upper Body' : return workouts.filter((workout) =>  workout.category.toLowerCase().includes('Upper Body')
-            );
-            case 'Lower Body': return workouts.filter((workout) => workout.category.includes('Lower Body')
-            );
-            case 'Full Body': return workouts.filter((workout) => workout.category.includes('Full Body')
-            );
-            default:
+        if(selectedCategory === 'Upper Body' || selectedCategory === 'Lower Body' || selectedCategory === 'Full Body') {
+            return workouts.filter((workout) => workout.category.includes(selectedCategory))
         }
         return workouts
-    }
-
-    // const filterWorkoutsByCategory = (workouts, selectedCategory) => {
-    //     // If selectedCategory is empty, return all workouts
-    //     if (!selectedCategory) {
-    //       return workouts;
-    //     }
-      
-    //     // Filter workouts based on the selected category
-    //     return workouts.filter((workout) =>
-    //       workout.category.includes(selectedCategory)
-    //     );
-    // };
-
+    };
+  
     const handleFilter = (text) => {
-        setFilter(text)
-        setData(filterWorkoutsByCategory(WORKOUTS, text))
+        console.log('Selected Category: ', text)
+        //setFilter();
+        
+        const filterData = WORKOUTS.map((dayWorkout) => {
+            const workouts = dayWorkout.workouts || [];
+            
+            return {
+                ...dayWorkout,
+                workouts: filterWorkoutsByCategory(workouts, text)
+            };
+        });
 
-        // const filterData = WORKOUTS.map((dayWorkout) => {
-        //    const workouts = dayWorkout.workouts || [];
-        //     const filteredWorkouts = filterWorkoutsByCategory(workouts, text);
+      console.log("Filtered data", filterData)
+      setData(filterData);
+    };
 
-        //     return {
-        //         ...dayWorkout,
-        //         workouts: filteredWorkouts
-        //     };
-        // });
-        // console.log('Selected:',filterData)
-        // setData(filterData)
-
-    }
-  
-    // const handleFilter = (text) => {
-    //     console.log('Selected Category: ', text)
-    //   setFilter(text);
-  
-    //   const filterData = WORKOUTS.map((dayWorkout) => {
-    //     const workouts = dayWorkout.workouts || [];
-
-    //     return {
-    //         ...dayWorkout,
-    //         workouts: filterWorkoutsByCategory(workouts, text)
-    //     };
-    //   });
-    //   console.log("Filtered data", filterData)
-    //   setData(filterData);
-    // };
-  
     const categories = [
       { label: 'All Categories', value: 'All Categories' },
       { label: 'Upper Body', value: 'Upper Body' },
@@ -80,7 +45,7 @@ const WorkoutDirectoryScreen = () => {
         <Header />
         <RNPickerSelect
         value={filter}
-          onValueChange={(value) => handleFilter(value)}
+          onValueChange={(value) => setFilter(handleFilter(value))}
           items={categories}
           placeholder={{
             label: 'Filter By Category...',
