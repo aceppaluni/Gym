@@ -7,34 +7,43 @@ import RNPickerSelect from 'react-native-picker-select';
 
 const WorkoutDirectoryScreen = () => {
     const [data, setData] = useState(WORKOUTS);
-    const [filter, setFilter] = useState('');
+    const [filterChoice, setFilterChoice] = useState('');
 
-    const filterWorkoutsByCategory = (workouts, selectedCategory) => {
-        if(selectedCategory === 'Upper Body' || selectedCategory === 'Lower Body' || selectedCategory === 'Full Body') {
-            return workouts.filter((workout) => workout.category.includes(selectedCategory))
-        }
-        return workouts
-    };
-  
-    const handleFilter = (text) => {
-        console.log('Selected Category: ', text)
-        //setFilter();
+    const handelFilter = (text) => {
+        setFilterChoice(text)
         
-        const filterData = WORKOUTS.map((dayWorkout) => {
-            const workouts = dayWorkout.workouts || [];
-            
-            return {
-                ...dayWorkout,
-                workouts: filterWorkoutsByCategory(workouts, text)
-            };
-        });
+        const filteredData = WORKOUTS.filter((workout) => workout.category.includes(workout));
+        console.log(filteredData)
+        setData(filteredData)
+      
+    }
 
-      console.log("Filtered data", filterData)
-      setData(filterData);
-    };
+    // const filterWorkoutsByCategory = (workouts ) => {
+    //     if(filterChoice === 'Upper Body' || filterChoice === 'Lower Body' || filterChoice === 'Full Body') {
+    //         return workouts.filter((workout) => workout.category.includes(selectedCategory))
+    //     }
+    //     return workouts
+    // };
+  
+    // const handelFilter = (text) => {
+    //     console.log('Selected Category: ', text)
+    //     //setFilter();
+        
+    //     let filterData = WORKOUTS.filter((dayWorkout) => {
+    //         const workouts = dayWorkout.workouts || [];
+            
+    //         return {
+    //             ...dayWorkout,
+    //             workouts: filterWorkoutsByCategory(workouts, text)
+    //         };
+    //     });
+
+    //   console.log("Filtered data", filterData)
+    //   setData(filterData);
+    // }; 
 
     const categories = [
-      { label: 'All Categories', value: 'All Categories' },
+      { label: 'All Categories', value: '' },
       { label: 'Upper Body', value: 'Upper Body' },
       { label: 'Lower Body', value: 'Lower Body' },
       { label: 'Full Body', value: 'Full Body' },
@@ -44,8 +53,8 @@ const WorkoutDirectoryScreen = () => {
       <View style={styles.view}>
         <Header />
         <RNPickerSelect
-        value={filter}
-          onValueChange={(value) => setFilter(handleFilter(value))}
+        value={filterChoice}
+          onValueChange={(text) => handelFilter(text)}
           items={categories}
           placeholder={{
             label: 'Filter By Category...',

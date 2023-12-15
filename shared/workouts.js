@@ -37,7 +37,8 @@ export const WORKOUTS = [
     ],
     tuesdayLowerBody =[
         {
-            mainTitle: 'Tuesday Eccentric Low Body'
+            mainTitle: 'Tuesday Eccentric Low Body',
+            category: 'Lower Body'
         },
         {
             id: 0,
@@ -55,7 +56,8 @@ export const WORKOUTS = [
     ],
     wednesdayFullBody = [
         {
-            mainTitle: 'FullBody Wednesday'
+            mainTitle: 'FullBody Wednesday',
+            category: 'Full Body'
         },
         {
             id: 0,
@@ -84,7 +86,8 @@ export const WORKOUTS = [
     ],
     fridayLowerBody = [
         {
-            mainTitle: 'Friday Low Body Mass'
+            mainTitle: 'Friday Low Body Mass',
+            category: 'Lower Body'
         },
         {
             id: 0,
