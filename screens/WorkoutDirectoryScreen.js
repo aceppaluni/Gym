@@ -9,52 +9,22 @@ const WorkoutDirectoryScreen = () => {
     const [data, setData] = useState(WORKOUTS);
     const [filterChoice, setFilterChoice] = useState('');
 
-    // const handelFilter = (text) => {
-    //     setFilterChoice(text)
-
-    //     const filteredData = WORKOUTS.map((dayWorkout) => {
-    //         const workouts = dayWorkout.slice(0);
-
-    //         const filteredWorkouts = workouts.filter((workout) => workout.category.toLowerCase().includes(text.toLowerCase())
-    //         );
-    //         return [dayWorkout[0], ...filteredWorkouts]
-    //     })
-        
-    //     // const filteredData = WORKOUTS.filter((workout) => workout.category.includes(text));
-    //     console.log(filteredData)
-    //     setData(filteredData)
-      
-    // }
-
-    const filterWorkoutsByCategory = (array, category) => {
+    const filterWorkoutsByCategory = (filterChoice) => {
         let filteredWorkouts = [];
-        for(let i = 0; i < array.length; i ++) {
-            for (let j = 0; j < array.length; j ++ ) {
-                if(array[i][j].category === category) {
-                    filteredWorkouts.push(array[i][j])
+        for(let i = 0; i < WORKOUTS; i ++) {
+            for (let j = 0; j < WORKOUTS[i]; j ++ ) {
+                if(WORKOUTS[i][j].category === filterChoice) {
+                    filteredWorkouts.push(WORKOUTS[i][j])
                 }
             }
         }
-        filteredWorkouts(WORKOUTS, 'Full Body')
-        //return filteredWorkouts
+        setData(filteredWorkouts)
     }
   
-    // const handelFilter = (text) => {
-    //     console.log('Selected Category: ', text)
-    //     //setFilter();
-        
-    //     let filterData = WORKOUTS.filter((dayWorkout) => {
-    //         const workouts = dayWorkout.workouts || [];
-            
-    //         return {
-    //             ...dayWorkout,
-    //              : filterWorkoutsByCategory(workouts, text)
-    //         };
-    //     });
-
-    //   console.log("Filtered data", filterData)
-    //   setData(filterData);
-    // }; 
+    const handelFilter = (text) => {
+        setFilterChoice(text)
+        filterWorkoutsByCategory(text)
+    }; 
 
     const categories = [
       { label: 'All Categories', value: '' },
@@ -68,7 +38,7 @@ const WorkoutDirectoryScreen = () => {
         <Header />
         <RNPickerSelect
         value={filterChoice}
-          onValueChange={(text) =>{ setFilterChoice(text), filterWorkoutsByCategory(text)}}
+          onValueChange={(text) => handelFilter(text)}
           items={categories}
           placeholder={{
             label: 'Filter By Category...',
