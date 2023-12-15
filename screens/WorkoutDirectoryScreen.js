@@ -11,8 +11,16 @@ const WorkoutDirectoryScreen = () => {
 
     const handelFilter = (text) => {
         setFilterChoice(text)
+
+        const filteredData = WORKOUTS.map((dayWorkout) => {
+            const workouts = dayWorkout.slice(0);
+
+            const filteredWorkouts = workouts.filter((workout) => workout.category.toLowerCase().includes(text.toLowerCase())
+            );
+            return [dayWorkout[0], ...filteredWorkouts]
+        })
         
-        const filteredData = WORKOUTS.filter((workout) => workout.category.includes(workout));
+        // const filteredData = WORKOUTS.filter((workout) => workout.category.includes(text));
         console.log(filteredData)
         setData(filteredData)
       
