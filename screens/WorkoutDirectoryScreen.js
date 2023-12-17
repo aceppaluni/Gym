@@ -63,8 +63,8 @@ const WorkoutDirectoryScreen = () => {
         />
         <FlatList 
             data={data} 
-            renderItem={({item: workout}) => (<RenderWorkouts item={workout} key={workout.id} />)} 
-            keyExtractor={workout => workout.id}
+            renderItem={() => (<RenderWorkouts  />)} 
+            keyExtractor={(dayWorkout) => dayWorkout.id}
         />
       </View>
     );

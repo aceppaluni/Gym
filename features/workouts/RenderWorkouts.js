@@ -48,7 +48,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     justifyContent: "center",
     fontSize: 20,
-  }
+  },
+  view: {
+    backgroundColor: "black",
+    color: 'pink'
+},
 })
 
 export default RenderWorkouts
