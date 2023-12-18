@@ -20,7 +20,7 @@ const WorkoutDirectoryScreen = () => {
         }
         setData(filteredWorkouts)
     }
-  
+
     const handelFilter = (text) => {
         setFilterChoice(text)
         filterWorkoutsByCategory(text)
@@ -62,9 +62,9 @@ const WorkoutDirectoryScreen = () => {
           }}
         />
         <FlatList 
-            data={data} 
-            renderItem={() => (<RenderWorkouts  />)} 
-            keyExtractor={(dayWorkout) => dayWorkout.id}
+            data={data.flat()} 
+            renderItem={({item: workout}) => <RenderWorkouts data={workout} />} 
+            keyExtractor={(workout) => workout.id}
         />
       </View>
     );

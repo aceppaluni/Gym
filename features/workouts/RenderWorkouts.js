@@ -35,7 +35,6 @@ const RenderWorkouts = () => {
     </ScrollView>
   )
 }
-
 const styles = StyleSheet.create({
   text: {
     fontSize: 15,
