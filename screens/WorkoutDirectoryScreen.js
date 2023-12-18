@@ -10,15 +10,23 @@ const WorkoutDirectoryScreen = () => {
     const [filterChoice, setFilterChoice] = useState('');
 
     const filterWorkoutsByCategory = (filterChoice) => {
-        let filteredWorkouts = [];
-        for(let i = 0; i < WORKOUTS; i ++) {
-            for (let j = 0; j < WORKOUTS[i]; j ++ ) {
-                if(WORKOUTS[i][j].category === filterChoice) {
-                    filteredWorkouts.push(WORKOUTS[i][j])
-                }
-            }
-        }
-        setData(filteredWorkouts)
+        // let filteredWorkouts = [];
+        // for(let i = 0; i < WORKOUTS.length; i ++) {
+        //     for (let j = 0; j < WORKOUTS[i].length; j ++ ) {
+        //         if(WORKOUTS[i][j].category === filterChoice) {
+        //             filteredWorkouts.push(WORKOUTS[i][j])
+        //         }
+        //     }
+        // }
+        // setData(filteredWorkouts)
+        const filteredData = WORKOUTS[1][0].filter((dayWorkouts, index) => {
+            // return dayWorkouts.filter((workout) => workout[index].category.toLowerCase().includes(filterChoice.toLowerCase())
+            // );
+            //return WORKOUTS[1][0].filter((workout) => [workout])
+            dayWorkouts
+        })
+        console.log(filteredData)
+        setData(filteredData)
     }
 
     const handelFilter = (text) => {
@@ -63,8 +71,8 @@ const WorkoutDirectoryScreen = () => {
         />
         <FlatList 
             data={data.flat()} 
-            renderItem={({item: workout}) => <RenderWorkouts data={workout} />} 
-            keyExtractor={(workout) => workout.id}
+            renderItem={({item: dayWorkouts}) => <RenderWorkouts data={dayWorkouts} />} 
+            keyExtractor={(dayWorkout) => dayWorkout.id}
         />
       </View>
     );

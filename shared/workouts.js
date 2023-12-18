@@ -84,4 +84,6 @@ export const WORKOUTS = [
             set: '3-4 sets x 8-10 reps',
         }
     ]
-]
+];
+
+console.log(WORKOUTS[1][0].category)

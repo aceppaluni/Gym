@@ -11,8 +11,8 @@ const RenderWorkouts = () => {
   const renderDayWorkouts = (dayWorkouts) => {
     return (
       <View>
-        {Array.isArray(dayWorkouts) && dayWorkouts.map((exercise, index) => (
-        <View key={index}>
+        {Array.isArray(dayWorkouts) && dayWorkouts.map((exercise, id) => (
+        <View key={id}>
         <Card>
           <Text style={styles.mainCard}>{exercise.mainTitle}</Text>
           <Card.Title>{exercise.name}</Card.Title>
