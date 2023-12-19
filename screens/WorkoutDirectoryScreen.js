@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { WORKOUTS } from '../shared/workouts';
-import {FlatList, ScrollView, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import Header from '../componets/Header';
 import RenderWorkouts from '../features/workouts/RenderWorkouts';
 import RNPickerSelect from 'react-native-picker-select';
@@ -9,37 +9,36 @@ const WorkoutDirectoryScreen = () => {
     const [data, setData] = useState(WORKOUTS);
     const [filterChoice, setFilterChoice] = useState('');
 
-    const filterWorkoutsByCategory = (filterChoice) => {
-        // let filteredWorkouts = [];
-        // for(let i = 0; i < WORKOUTS.length; i ++) {
-        //     for (let j = 0; j < WORKOUTS[i].length; j ++ ) {
-        //         if(WORKOUTS[i][j].category === filterChoice) {
-        //             filteredWorkouts.push(WORKOUTS[i][j])
-        //         }
-        //     }
-        // }
-        // setData(filteredWorkouts)
-        const filteredData = WORKOUTS[1][0].filter((dayWorkouts, index) => {
-            // return dayWorkouts.filter((workout) => workout[index].category.toLowerCase().includes(filterChoice.toLowerCase())
-            // );
-            //return WORKOUTS[1][0].filter((workout) => [workout])
-            dayWorkouts
-        })
-        console.log(filteredData)
-        setData(filteredData)
+    const filterWorkoutsByCategory = (selectedDay) => {
+        try {
+            console.log('Selected Day:', selectedDay);
+      
+            const filteredData = selectedDay
+              ? WORKOUTS.filter((workout) => workout.day === selectedDay)
+              : WORKOUTS;
+      
+            console.log('Filtered Data:', filteredData);
+      
+            setData(filteredData);
+          } catch (error) {
+            console.error('Error filtering workouts:', error);
+        }
+        
     }
 
     const handelFilter = (text) => {
+        console.log('Selected Day', text)
         setFilterChoice(text)
         filterWorkoutsByCategory(text)
     }; 
 
-    const categories = [
-      { label: 'All Categories', value: '' },
-      { label: 'Upper Body', value: 'Upper Body' },
-      { label: 'Lower Body', value: 'Lower Body' },
-      { label: 'Full Body', value: 'Full Body' },
-    ];
+    const daysOfWeek = [
+        {label: 'Monday', value: 'Monday'},
+        {label: 'Tuesday', value: 'Tuesday'},
+        {label: 'Wednesday', value: 'Wednesday'},
+        {label: 'Thursday', value: 'Thursday'},
+        {label: 'Friday', value: 'Friday'}
+    ]
   
     return (
       <View style={styles.view}>
@@ -47,7 +46,7 @@ const WorkoutDirectoryScreen = () => {
         <RNPickerSelect
         value={filterChoice}
           onValueChange={(text) => handelFilter(text)}
-          items={categories}
+          items={daysOfWeek}
           placeholder={{
             label: 'Filter By Category...',
             value: '',
@@ -70,9 +69,9 @@ const WorkoutDirectoryScreen = () => {
           }}
         />
         <FlatList 
-            data={data.flat()} 
-            renderItem={({item: dayWorkouts}) => <RenderWorkouts data={dayWorkouts} />} 
-            keyExtractor={(dayWorkout) => dayWorkout.id}
+            data={data} 
+            renderItem={({item: workout}) => <RenderWorkouts  filteredData={[workout]} />} // brackets ensure what is coming back is an array 
+            keyExtractor={(workout) => workout.id.toString()}
         />
       </View>
     );
@@ -93,4 +92,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default WorkoutDirectoryScreen
+export default WorkoutDirectoryScreen;

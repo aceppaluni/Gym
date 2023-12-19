@@ -1,40 +1,26 @@
-import { Card, SocialIcon, Tile } from 'react-native-elements';
+import { Card } from 'react-native-elements';
 import {ScrollView, Text, View, StyleSheet} from 'react-native';
-import React, { useState } from 'react'
-import Header from '../../componets/Header';
+import React from 'react'
+//import Header from '../../componets/Header';
 import { WORKOUTS } from '../../shared/workouts';
 
-const RenderWorkouts = () => {
-
-  const [mondayUpperBody, tuesdayLowerBody, wednesdayFullBody, thursdayUpperBody, fridayLowerBody] = WORKOUTS;
-
-  const renderDayWorkouts = (dayWorkouts) => {
-    return (
-      <View>
-        {Array.isArray(dayWorkouts) && dayWorkouts.map((exercise, id) => (
-        <View key={id}>
-        <Card>
-          <Text style={styles.mainCard}>{exercise.mainTitle}</Text>
-          <Card.Title>{exercise.name}</Card.Title>
-          <Text>{exercise.set}</Text>
-          <Text>{exercise.category}</Text>
-        </Card>
-        </View>
-        ))}
-      </View>
-    )
-  }
-
+const RenderWorkouts = ({ filteredData }) => {
   return (
-    <ScrollView>
-      {renderDayWorkouts(mondayUpperBody)}
-      {renderDayWorkouts(tuesdayLowerBody)} 
-      {renderDayWorkouts(wednesdayFullBody)}
-      {renderDayWorkouts(thursdayUpperBody)}
-      {renderDayWorkouts(fridayLowerBody)}
-    </ScrollView>
+      <ScrollView>
+        {filteredData.map((workout) => (
+          <View key={workout.id}>
+            <Text style={styles.text}>{workout.mainTitle}</Text>
+            <Card>
+              <Card.Title>{workout.name}</Card.Title>
+              <Text>{workout.set}</Text>
+              <Text>{workout.category}</Text>
+            </Card>
+          </View>
+        ))}
+      </ScrollView>
   )
 }
+
 const styles = StyleSheet.create({
   text: {
     fontSize: 15,
