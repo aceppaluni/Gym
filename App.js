@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import SupplementsScreen from './screens/SupplementsScreen';
+import EquipmentScreen from './screens/EquipmentScreen';
 
 const screenOptions =  {
   headerTintColor: '#fff',
@@ -26,6 +27,7 @@ export default function App() {
         <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarIcon: ({ size }) => <Icon name="home" color={'black'} size={size} />}} />
         <Tab.Screen name="Directory" component={WorkoutDirectoryScreen} options={{tabBarIcon: ({  size }) => <Icon name="list" color={'black'} size={size} />}}/>
         <Tab.Screen name="Supplements" component={SupplementsScreen} options={{tabBarIcon: ({  size }) => <Icon name="circle" color={'black'} size={size} />}}/>
+        <Tab.Screen name="Equipment" component={EquipmentScreen} options={{tabBarIcon: ({  size }) => <Icon name="circle" color={'black'} size={size} />}}/>
         <Tab.Screen name="About" component={AboutScreen} options={{tabBarIcon: ({ size }) => <Icon name="info" color={'black'} size={size} />}}/>
       </Tab.Navigator>
     </NavigationContainer>
