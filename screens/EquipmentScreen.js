@@ -26,12 +26,6 @@ const EquipmentScreen = () => {
 }
 
 const styles = StyleSheet.create({
-    // imageView: {
-    //     display: 'flex',
-    //     justifyContent: 'flex-end',
-    //     backgroundColor: 'black',
-    //     margin: 'auto',
-    // },
     image: {
         //alignItems: 'center',
         //justifyContent: 'flex-end',
