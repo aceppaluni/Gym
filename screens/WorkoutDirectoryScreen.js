@@ -69,6 +69,7 @@ const WorkoutDirectoryScreen = () => {
           }}
         />
         <FlatList 
+            style={styles.view}
             data={data} 
             renderItem={({item: workout}) => <RenderWorkouts  filteredData={[workout]} />} // brackets ensure what is coming back is an array 
             keyExtractor={(workout) => workout.id.toString()}

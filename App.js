@@ -2,6 +2,7 @@ import HomeScreen from './screens/HomeScreen';
 import AboutScreen from './screens/AboutScreen';
 import WorkoutDirectoryScreen from './screens/WorkoutDirectoryScreen';
 import {Icon} from 'react-native-elements'
+import { StyleSheet } from 'react-native';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -21,11 +22,11 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Tab.Navigator screenOptions={screenOptions}>
-        <Tab.Screen name="Home" component={HomeScreen} options={{tabBarIcon: ({ color, size }) => <Icon name="home" color={color} size={size} />}}/>
-        <Tab.Screen name="Directory" component={WorkoutDirectoryScreen} options={{tabBarIcon: ({ color, size }) => <Icon name="list" color={color} size={size} />}}></Tab.Screen>
-        <Tab.Screen name="Supplements" component={SupplementsScreen} options={{tabBarIcon: ({ color, size }) => <Icon name="circle" color={color} size={size} />}}></Tab.Screen>
-        <Tab.Screen name="About" component={AboutScreen} options={{tabBarIcon: ({ color, size }) => <Icon name="info" color={color} size={size} />}}/>
+      <Tab.Navigator screenOptions={screenOptions} tabBarOptions={{style: {backgroundColor: '#AD4BDA'}}}>
+        <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarIcon: ({ size }) => <Icon name="home" color={'black'} size={size} />}} />
+        <Tab.Screen name="Directory" component={WorkoutDirectoryScreen} options={{tabBarIcon: ({  size }) => <Icon name="list" color={'black'} size={size} />}}/>
+        <Tab.Screen name="Supplements" component={SupplementsScreen} options={{tabBarIcon: ({  size }) => <Icon name="circle" color={'black'} size={size} />}}/>
+        <Tab.Screen name="About" component={AboutScreen} options={{tabBarIcon: ({ size }) => <Icon name="info" color={'black'} size={size} />}}/>
       </Tab.Navigator>
     </NavigationContainer>
     </Provider>
