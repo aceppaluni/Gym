@@ -1,37 +1,37 @@
-import React from 'react';
-import {Text, View, StyleSheet, Image } from 'react-native'
-import muscle from '../assets/muscle.jpg'
+import React from "react";
+import { Text, View, StyleSheet, Image } from "react-native";
+import muscle from "../assets/muscle.jpg";
 
 const Header = () => {
   return (
     <View style={styles.view}>
-        <Image source={muscle} style={styles.image}></Image>
-        <Text style={styles.text}>GYM Guide U</Text>
+      <Image source={muscle} style={styles.image}></Image>
+      <Text style={styles.text}>GYM Guide U</Text>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
-    view: {
-        //width: '100%',
-        //height: '200%'
-        margin: '10%',
-        display: 'flex',
-        flexDirection:'row',
-        flexDirection: 'row'
-        //justifyContent: 'flex-end'
-    },
-    image: {
-        width: '15%',
-        height: '150%',
-        borderRadius: '50%'
-    },
-    text:{
-        color: '#AD4BDA',
-        fontSize: 20,
+  view: {
+    //width: '100%',
+    //height: '200%'
+    margin: "10%",
+    display: "flex",
+    flexDirection: "row",
+    flexDirection: "row",
+    //justifyContent: 'flex-end'
+  },
+  image: {
+    width: "15%",
+    height: "150%",
+    borderRadius: "50%",
+  },
+  text: {
+    color: "#AD4BDA",
+    fontSize: 20,
 
-        //textAlign: 'center'
-    }
-})
+    //textAlign: 'center'
+  },
+});
 
-export default Header
+export default Header;
