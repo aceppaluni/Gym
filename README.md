@@ -1,6 +1,6 @@
 React Native - Gym Guide U
 
-This project is designed to provide workouts for those looking to start a new workout routine. 
+An app designed for those just starting out in the gym. 
 
 Instilation: Clone the repository https://github.com/aceppaluni/Gym
 
